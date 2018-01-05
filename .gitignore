@@ -1,0 +1,4 @@
+result/
+*.mem
+cluster_compile
+*.ipynb
