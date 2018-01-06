@@ -60,7 +60,7 @@ function fib_chain_rand_hmat(basis,L)
         hmat[j,k]=2*rand()-1 #matrix element from -1 to 1
     end
     hmat=hmat+hmat'
-    foreach(j->hmat[j,j]=rand(),1:hdim)
+    foreach(j->hmat[j,j]=2*rand()-1,1:hdim)
 
     return hmat
 end
