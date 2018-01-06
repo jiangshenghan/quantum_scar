@@ -57,7 +57,7 @@ function fib_chain_rand_hmat(basis,L)
     hdim=length(basis)
     hmat=zeros(hdim,hdim)
     for j=1:hdim,k=j+1:hdim
-        hmat[j,k]=rand()
+        hmat[j,k]=2*rand()-1 #matrix element from -1 to 1
     end
     hmat=hmat+hmat'
     foreach(j->hmat[j,j]=rand(),1:hdim)
