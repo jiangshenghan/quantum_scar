@@ -53,7 +53,7 @@ obtain random Hamiltonian for fib chain
 
 return hmat
 """
-function fig_chain_rand_ham(basis,L)
+function fib_chain_rand_hmat(basis,L)
     hdim=length(basis)
     hmat=zeros(hdim,hdim)
     for j=1:hdim,k=j+1:hdim
