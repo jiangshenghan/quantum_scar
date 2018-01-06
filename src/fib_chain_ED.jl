@@ -47,3 +47,21 @@ function fib_chain_qs_hmat(basis,L)
 
     return hmat
 end
+
+"""
+obtain random Hamiltonian for fib chain
+
+return hmat
+"""
+function fig_chain_rand_ham(basis,L)
+    hdim=length(basis)
+    hmat=zeros(hdim,hdim)
+    for j=1:hdim,k=j+1:hdim
+        hmat[j,k]=rand()
+    end
+    hmat=hmat+hmat'
+    foreach(j->hmat[j,j]=rand(),1:hdim)
+
+    return hmat
+end
+
