@@ -49,18 +49,18 @@ function fib_chain_qs_hmat(basis,L)
 end
 
 """
-obtain random Hamiltonian for fib chain
+obtain random Hamiltonian for given basis
 
 return hmat
 """
-function fib_chain_rand_hmat(basis,L)
+function rand_hmat(basis,L)
     hdim=length(basis)
     hmat=zeros(hdim,hdim)
-    for j=1:hdim,k=j+1:hdim
+    for j=1:hdim,k=j:hdim
         hmat[j,k]=2*rand()-1 #matrix element from -1 to 1
     end
     hmat=hmat+hmat'
-    foreach(j->hmat[j,j]=2*rand()-1,1:hdim)
+    #foreach(j->hmat[j,j]=2*rand()-1,1:hdim)
 
     return hmat
 end
