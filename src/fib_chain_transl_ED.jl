@@ -31,6 +31,7 @@ function fib_chain_transl_basis(L)
     return basis
 end
 
+
 """
 obtain quantum scar Hamiltonian matrix for transl inv fib chain with a fixed momentum k=2pi*nk/L. The real space Hamiltonian reads
 H=\sum P_{i-1}X_i P_{i+1}

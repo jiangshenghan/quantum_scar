@@ -3,23 +3,23 @@
 include("../src/utilities.jl")
 include("../src/fib_chain_ED.jl")
 
-L=10
+L=20
 basis=fib_chain_basis(L)
 
+#=
 hmat=fib_chain_qs_hmat(basis,L)
 heig=eigfact(hmat)
 heigvals=heig[:values]
 heigvecs=heig[:vectors]
-#=
 #store heig into a file
 writedlm("/home/jiangsh/quantum_scar/result/qs_heigvals_L=$L.txt",heig[:values])
 writedlm("/home/jiangsh/quantum_scar/result/qs_heigvecs_L=$L.txt",heig[:vectors])
-=#
+# =#
 
 #read heigs from file
-#heigvals=readdlm("/home/jiangsh/quantum_scar/result/qs_heigvals_L=$L.txt")
-#heigvecs=readdlm("/home/jiangsh/quantum_scar/result/qs_heigvecs_L=$L.txt")
-#print("successfully read eigs!\n")
+heigvals=readdlm("/home/jiangsh/quantum_scar/result/qs_heigvals_L=$L.txt")
+heigvecs=readdlm("/home/jiangsh/quantum_scar/result/qs_heigvecs_L=$L.txt")
+print("successfully read eigs!\n")
 
 @show length(heigvals)
 
