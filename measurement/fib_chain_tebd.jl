@@ -2,6 +2,7 @@
 # H=\sum_j X_j + V \sum_j 1/4(I_j-Z_j).(I_{j+1}-Z_{j+1}), with infinite V limit
 
 include("/home/jiangsh/JTensor.jl/src/JTensor.jl")
+#include("/mnt/c/Users/sheng/OneDrive\ -\ California\ Institute\ of\ Technology/Code/JTensor.jl/src/JTensor.jl")
 using JTensor
 
 d=2
