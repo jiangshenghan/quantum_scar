@@ -44,12 +44,26 @@ Rψ_from_state(ψ::Int,L::Int)=Rψ_from_qubits(qubits_from_state(ψ,L))
 
 """
 check if the spin state is allowed in Fib chain Hilbert space
+PBC is assumed
 """
 function is_fib_state(ψ::Int,L::Int)
     ψ_qb=qubits_from_state(ψ,L)
     #@show Array{Int}(ψ_qb)
     for j=1:L
         if ψ_qb[j]==1 && ψ_qb[mod(j,L)+1]==1
+            return false
+        end
+    end
+    return true
+end
+
+"""
+check if the spin state is allowed in Fib chain Hilbert space for open chain
+"""
+function is_fib_chain_obc()
+    ψ_qb=qubits_from_state(ψ,L)
+    for j=1:L-1
+        if ψ_qb[j]==1 && ψ_qb[j+1]==1
             return false
         end
     end
