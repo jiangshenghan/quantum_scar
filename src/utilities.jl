@@ -60,7 +60,7 @@ end
 """
 check if the spin state is allowed in Fib chain Hilbert space for open chain
 """
-function is_fib_chain_obc()
+function is_fib_state_obc(ψ::Int,L::Int)
     ψ_qb=qubits_from_state(ψ,L)
     for j=1:L-1
         if ψ_qb[j]==1 && ψ_qb[j+1]==1

@@ -85,7 +85,7 @@ function fib_chain_qs_hmat_obc(basis,L)
         for j=1:L
             if j==1 && ψ_qb[2]==1 continue
             elseif j==L && ψ_qb[L-1]==1 continue
-            elseif ψ_qb[j-1]==1 || ψ_qb[j+1]==1 continue end
+            elseif (j>1 && j<L) && (ψ_qb[mod(j-2,L)+1]==1 || ψ_qb[mod(j,L)+1]==1) continue end
             φ_qb=copy(ψ_qb)
             φ_qb[j]=!φ_qb[j]
             φ=Utilities.state_from_qubits(φ_qb)
