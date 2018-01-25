@@ -15,7 +15,7 @@ function fib_chain_transl_basis(L)
         if Utilities.is_rep_state(s,L) push!(rep_states,s) end
     end
 
-    #basis[n] stores rep states with momentum k=2pi.mks[n]/L, mks given by users (default value 0,...L-1)
+    #basis[n] stores rep states with momentum k=2pi.n/L
     basis=[]
     for n=1:L
         nk_basis=[]
@@ -50,7 +50,7 @@ function fib_chain_qs_transl_hmat(basis,nk,L)
             t_qb=copy(s_qb)
             t_qb[j]=!t_qb[j]
             Rt=Utilities.Rψ_from_qubits(t_qb)
-            t,rt=Utilities.find_rep_state(Utilities.state_from_qubits(t_qb),L)
+            t,rt=Utilities.find_krep_state(Utilities.state_from_qubits(t_qb),L)
             t_ind=searchsorted(basis[mod(nk,L)+1],t)
             if length(t_ind)==0 continue end #t not consistent with mks[n]
             t_ind=t_ind[1]
@@ -83,7 +83,7 @@ function fib_chain_XZZ_transl_hmat(basis,nk,L;g=0.3)
             t_qb=copy(s_qb)
             t_qb[j]=!t_qb[j]
             Rt=Utilities.Rψ_from_qubits(t_qb)
-            t,rt=Utilities.find_rep_state(Utilities.state_from_qubits(t_qb),L)
+            t,rt=Utilities.find_krep_state(Utilities.state_from_qubits(t_qb),L)
             t_ind=searchsorted(basis[mod(nk,L)+1],t)
             if length(t_ind)==0 continue end #t not consistent with mks[n]
             t_ind=t_ind[1]
@@ -94,26 +94,6 @@ function fib_chain_XZZ_transl_hmat(basis,nk,L;g=0.3)
     end
 
     return hmat
-end
-
-
-"""
-Given a spin state |s>, obtain <s|nk> for the eigenstates {|1k>,|2k>,...}'s, where |nk>=a_nk|sk>+...
-<s|nk>=1/sqrt(N_s0)*a_nk*exp(-ik*r_0)
-where |s_0> is the rep state and |s>=T^{r_0}|s_0>. N_s0=L^2/Rs and T^Rs|s>=|s>
-
-eigenstates are stored as matrix, where each col rep one state
-
-return {<s|1k>,<s|2k>,...}
-"""
-function spin_state_overlap(s::Int,eigvecs,nk,L,basis)
-    Rs=Utilities.Rψ_from_state(s,L)
-    s0,r0=Utilities.find_rep_state(s,L)
-    s0_ind=searchsorted(basis[mod(nk,L)+1],s0)
-    #@show s0,r0,s0_ind
-    if length(s0_ind)==0 return zeros(size(eigvecs,2)) end
-    s0_ind=s0_ind[1]
-    return exp(-im*2pi/L*nk*r0)*sqrt(1/Rs)*eigvecs[s0_ind,:]
 end
 
 
